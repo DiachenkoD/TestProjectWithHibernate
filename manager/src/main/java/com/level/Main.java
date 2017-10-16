@@ -1,12 +1,9 @@
 package com.level;
 
 
-import com.level.dao.impl.UserDaoImpl;
 import com.level.entity.User;
-import com.sun.org.apache.xml.internal.serialize.LineSeparator;
 
 import java.sql.SQLException;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
@@ -16,11 +13,11 @@ public class Main {
         User u3 = new User("Physical","Anna","Storozhko",22);
         User u4 = new User("Physical","Anastasia","Simertchuk",25);
 
-        Factory.getInstance().getUserDao().addUser(u1);
-        Factory.getInstance().getUserDao().addUser(u2);
-        Factory.getInstance().getUserDao().addUser(u3);
-        Factory.getInstance().getUserDao().addUser(u4);
+        Factory.getInstance().getCommunDao().addObject(u1);
+        Factory.getInstance().getCommunDao().addObject(u2);
+        Factory.getInstance().getCommunDao().addObject(u3);
+        Factory.getInstance().getCommunDao().addObject(u4);
 
-        System.out.println(Factory.getInstance().getUserDao().getUserById(1));
+        System.out.println(Factory.getInstance().getCommunDao().getObjectById(2));
     }
 }

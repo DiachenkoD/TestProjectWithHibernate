@@ -1,7 +1,7 @@
 package com.level.dao.impl;
 
 
-import com.level.dao.inter.UserDao;
+import com.level.dao.inter.CommunDao;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import com.level.entity.User;
@@ -9,12 +9,10 @@ import com.level.HiberbateSessionFactory;
 
 import javax.swing.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class UserDaoImpl<T> implements UserDao {
+public class CommunDaoImpl implements CommunDao {
 
-    public void addUser(User user) throws SQLException {
+    public void addObject(Object user) throws SQLException {
         Session session = null;
         try {
             session = HiberbateSessionFactory.getSessionFactory().openSession();
@@ -31,7 +29,7 @@ public class UserDaoImpl<T> implements UserDao {
         }
     }
 
-    public void updateUser(User user) {
+    public void updateObject(Object user) {
         try (Session session = HiberbateSessionFactory.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.update(user);
@@ -42,7 +40,7 @@ public class UserDaoImpl<T> implements UserDao {
         }
     }
 
-    public User getUserByName(String name) {
+    public User getObjectByName(String name) {
         User user = null;
         try (Session session = HiberbateSessionFactory.getSessionFactory().openSession()) {
             Query query = session.createQuery("FROM User WHERE name =:paramName");
@@ -55,7 +53,7 @@ public class UserDaoImpl<T> implements UserDao {
         return user;
     }
 
-    public Long getUserIdByName(String name) {
+    public Long getObjectIdByName(String name) {
         Long idUser = null;
         try (Session session = HiberbateSessionFactory.getSessionFactory().openSession()) {
             Query query = session.createQuery("SELECT idUser FROM User WHERE name =:paramName");
@@ -68,7 +66,7 @@ public class UserDaoImpl<T> implements UserDao {
         return idUser;
     }
 
-    public User getUserById(long id) {
+    public User getObjectById(long id) {
         User user = null;
         try (Session session = HiberbateSessionFactory.getSessionFactory().openSession()) {
             Query query = session.createQuery("FROM User WHERE idUser =:paramId");
@@ -80,7 +78,8 @@ public class UserDaoImpl<T> implements UserDao {
         return user;
     }
 
-    public void deleteUser(User user) {
+
+    public void deleteObject(Object user) {
         try (Session session = HiberbateSessionFactory.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.delete(user);

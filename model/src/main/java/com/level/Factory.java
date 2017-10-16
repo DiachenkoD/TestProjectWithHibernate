@@ -1,11 +1,11 @@
 package com.level;
 
-import com.level.dao.impl.UserDaoImpl;
+import com.level.dao.impl.CommunDaoImpl;
 
 public class Factory {
 
     private static Factory instance = null;
-    private static UserDaoImpl userDao = null;
+    private static CommunDaoImpl communDao = null;
 
     /*public synchronized Factory<T> getInstance(){
 
@@ -22,8 +22,8 @@ public class Factory {
         return instance;
     }
 
-    public static UserDaoImpl getUserDao() {
-        if (userDao == null) userDao = new UserDaoImpl();
-        return userDao;
+    public static CommunDaoImpl getCommunDao() {
+        if (communDao == null) communDao = new CommunDaoImpl();
+        return communDao;
     }
 }
