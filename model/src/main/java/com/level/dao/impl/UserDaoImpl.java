@@ -42,7 +42,6 @@ public class UserDaoImpl<T> implements UserDao {
         }
     }
 
-
     public User getUserByName(String name) {
         User user = null;
         try (Session session = HiberbateSessionFactory.getSessionFactory().openSession()) {
@@ -68,6 +67,7 @@ public class UserDaoImpl<T> implements UserDao {
         }
         return idUser;
     }
+
     public User getUserById(long id) {
         User user = null;
         try (Session session = HiberbateSessionFactory.getSessionFactory().openSession()) {
@@ -79,7 +79,6 @@ public class UserDaoImpl<T> implements UserDao {
         }
         return user;
     }
-
 
     public void deleteUser(User user) {
         try (Session session = HiberbateSessionFactory.getSessionFactory().openSession()) {

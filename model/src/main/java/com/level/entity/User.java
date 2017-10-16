@@ -10,19 +10,21 @@ import javax.persistence.*;
 
 public class User {
     private long idUser;
-    private String name;
+    private String School_of;
     private String lastName;
     private String firstName;
+    private long age;
 
     public User() {
-        name = null;
+        School_of = null;
     }
 
 
-    public User(String name, String firstName, String lastName) {
-        this.name = name;
+    public User(String School_of, String firstName, String lastName, long age) {
+        this.School_of = School_of;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.age = age;
 
     }
 
@@ -38,40 +40,53 @@ public class User {
         this.idUser = idUser;
     }
 
-    @Column (name = "name")
-    public String getName() {
-        return name;
+    @Column (name = "School_of")
+    public String getSchool_of() {
+        return School_of;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Column (name = "lastName")
-    public String getEmail() {
-        return lastName;
-    }
-
-    public void setEmail(String lastName) {
-        this.lastName = lastName;
+    public void setSchool_of(String department) {
+        this.School_of = department;
     }
 
     @Column (name = "firstName")
-    public String getPassword() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setPassword(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
+    @Column (name = "lastName")
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+
+    @Column(name = "age")
+    public long getAge() {
+        return age;
+    }
+
+    public void setAge(long age) {
+        this.age = age;
+    }
+
+
 
     @Override
     public String toString() {
         return "User{" +
-                "idUser=" + idUser +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
+                "idUser =" + idUser +
+                ", School_of ='" + School_of + '\'' +
+                ", lastName ='" + lastName + '\'' +
+                ", firstName ='" + firstName + '\'' +
+                ", age = " + '\'' +
                 '}';
     }
 }
