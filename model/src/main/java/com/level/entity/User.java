@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "user")
 
 public class User {
-    private long idUser;
+    private long id;
     private String School_of;
     private String lastName;
     private String firstName;
@@ -18,6 +18,7 @@ public class User {
     public User() {
         School_of = null;
     }
+
 
 
     public User(String School_of, String firstName, String lastName, long age) {
@@ -32,12 +33,12 @@ public class User {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "idUser")
-    public long getIdUser() {
-        return idUser;
+    public long getId() {
+        return id;
     }
 
-    public void setIdUser(long idUser) {
-        this.idUser = idUser;
+    public void setId(long idUser) {
+        this.id = idUser;
     }
 
     @Column (name = "School_of")
@@ -78,11 +79,10 @@ public class User {
     }
 
 
-
     @Override
     public String toString() {
         return "User{" +
-                "idUser =" + idUser +
+                "idUser =" + id +
                 ", School_of ='" + School_of + '\'' +
                 ", lastName ='" + lastName + '\'' +
                 ", firstName ='" + firstName + '\'' +

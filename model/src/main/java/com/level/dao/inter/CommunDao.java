@@ -17,3 +17,4 @@ public interface CommunDao<T>{
 
     T getObjectById(long id) throws SQLException;
     }
+

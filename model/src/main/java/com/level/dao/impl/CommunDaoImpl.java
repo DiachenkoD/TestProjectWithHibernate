@@ -4,15 +4,14 @@ package com.level.dao.impl;
 import com.level.dao.inter.CommunDao;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import com.level.entity.User;
 import com.level.HiberbateSessionFactory;
 
 import javax.swing.*;
 import java.sql.SQLException;
 
-public class CommunDaoImpl implements CommunDao {
+public class CommunDaoImpl<T> implements CommunDao<T> {
 
-    public void addObject(Object user) throws SQLException {
+    public void addObject(T user) throws SQLException {
         Session session = null;
         try {
             session = HiberbateSessionFactory.getSessionFactory().openSession();
@@ -29,7 +28,7 @@ public class CommunDaoImpl implements CommunDao {
         }
     }
 
-    public void updateObject(Object user) {
+    public void updateObject(T user) {
         try (Session session = HiberbateSessionFactory.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.update(user);
@@ -40,12 +39,12 @@ public class CommunDaoImpl implements CommunDao {
         }
     }
 
-    public User getObjectByName(String name) {
-        User user = null;
+    public T getObjectByName(String name) {
+        T user = null;
         try (Session session = HiberbateSessionFactory.getSessionFactory().openSession()) {
             Query query = session.createQuery("FROM User WHERE name =:paramName");
             query.setParameter("paramName", name);
-            user = (User) query.uniqueResult();
+            user = (T) query.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
             //MUST be dan
@@ -56,7 +55,7 @@ public class CommunDaoImpl implements CommunDao {
     public Long getObjectIdByName(String name) {
         Long idUser = null;
         try (Session session = HiberbateSessionFactory.getSessionFactory().openSession()) {
-            Query query = session.createQuery("SELECT idUser FROM User WHERE name =:paramName");
+            Query query = session.createQuery("SELECT id FROM User WHERE name =:paramName");
             query.setParameter("paramName", name);
             idUser = (Long) query.uniqueResult();
         } catch (Exception e) {
@@ -66,12 +65,13 @@ public class CommunDaoImpl implements CommunDao {
         return idUser;
     }
 
-    public User getObjectById(long id) {
-        User user = null;
+    public T getObjectById(long id) {
+        T user = null;
+
         try (Session session = HiberbateSessionFactory.getSessionFactory().openSession()) {
-            Query query = session.createQuery("FROM User WHERE idUser =:paramId");
+            Query query = session.createQuery("FROM User WHERE id =:paramId");
             query.setParameter("paramId", id);
-            user = (User) query.uniqueResult();
+            user = (T) query.uniqueResult();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,7 +79,7 @@ public class CommunDaoImpl implements CommunDao {
     }
 
 
-    public void deleteObject(Object user) {
+    public void deleteObject(T user) {
         try (Session session = HiberbateSessionFactory.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.delete(user);
